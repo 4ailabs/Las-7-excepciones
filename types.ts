@@ -2,6 +2,7 @@
 export type QuestionType = 'radio' | 'checkbox-group' | 'table' | 'text' | 'select' | 'info';
 
 export interface Option {
+  id?: string;
   label: string;
   value: number;
   description?: string;

@@ -27,7 +27,10 @@ export const Screening: React.FC<ScreeningProps> = ({ scores, updateScore }) => 
         <div className="space-y-8">
             {screeningData.series.map((series) => (
                 <div key={series.id}>
-                    <h3 className="text-xl font-semibold text-slate-800 border-b-2 border-blue-200 pb-2 mb-4">{series.title}</h3>
+                    <h3 className="text-xl font-semibold text-slate-900 tracking-tight flex items-center gap-2 pb-2 mb-3">
+                        <span className="px-2 py-0.5 rounded-full text-xs font-bold bg-slate-900 text-white">{series.id}</span>
+                        {series.title}
+                    </h3>
                     {series.description && <p className="mb-4 text-slate-600" dangerouslySetInnerHTML={{ __html: series.description }}></p>}
                     <div className="space-y-6">
                         {series.questions.map((question) => (

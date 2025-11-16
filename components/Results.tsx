@@ -40,7 +40,8 @@ export const Results: React.FC<ResultsProps> = ({ scores, clientInfo }) => {
       id: section.id,
       title: section.title,
       score: totalScore,
-      level: getInterpretation(totalScore)
+      level: getInterpretation(totalScore),
+      maxScore: section.maxScore
     };
   });
 
@@ -57,8 +58,10 @@ export const Results: React.FC<ResultsProps> = ({ scores, clientInfo }) => {
   return (
     <div className="prose max-w-none">
       <div className="flex justify-between items-center print:hidden">
-        <h2 className="text-2xl font-bold text-slate-800">Reporte de Resultados</h2>
-        <button onClick={() => window.print()} className="px-4 py-2 bg-blue-600 text-white rounded-md font-semibold hover:bg-blue-700 transition-colors">Imprimir Reporte</button>
+        <h2 className="text-2xl font-extrabold text-slate-900 tracking-tight">Reporte de Resultados</h2>
+        <button onClick={() => window.print()} className="px-4 py-2 rounded-md font-semibold text-white transition-all bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 hover:brightness-110 hover:shadow">
+          Imprimir Reporte
+        </button>
       </div>
       <hr className="my-4"/>
 
@@ -74,19 +77,19 @@ export const Results: React.FC<ResultsProps> = ({ scores, clientInfo }) => {
 
         <h4>MATRIZ DE SCORES TOTALES</h4>
         <div className="overflow-x-auto">
-            <table className="min-w-full divide-y divide-gray-200 my-4">
-                <thead className="bg-gray-50">
+            <table className="min-w-full my-4 overflow-hidden rounded-lg shadow ring-1 ring-slate-200">
+                <thead className="bg-slate-50">
                 <tr>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Excepción</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Score Total</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nivel de Severidad</th>
+                    <th className="px-6 py-3 text-left text-xs font-semibold text-slate-600 uppercase tracking-wider">Excepción</th>
+                    <th className="px-6 py-3 text-left text-xs font-semibold text-slate-600 uppercase tracking-wider">Score Total</th>
+                    <th className="px-6 py-3 text-left text-xs font-semibold text-slate-600 uppercase tracking-wider">Severidad</th>
                 </tr>
                 </thead>
-                <tbody className="bg-white divide-y divide-gray-200">
+                <tbody className="bg-white divide-y divide-slate-200">
                 {exceptionScores.map(e => (
                     <tr key={e.id}>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{e.title.split('(')[0].replace('EVALUACIÓN DE', '').trim()}</td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{e.score} / 50</td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-slate-900">{e.title.split('(')[0].replace('EVALUACIÓN DE', '').trim()}</td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-slate-600">{e.score} / {e.maxScore}</td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm"><span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${getInterpretationClass(e.level)}`}>{e.level}</span></td>
                     </tr>
                 ))}

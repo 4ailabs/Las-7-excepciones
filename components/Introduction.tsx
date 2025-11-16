@@ -72,11 +72,11 @@ export const Introduction: React.FC<IntroductionProps> = ({ onStart, clientInfo,
             <input type="date" name="date" id="date" value={clientInfo.date} onChange={handleChange} className="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" />
           </div>
           <div>
-            <label htmlFor="symptom" className="block text-sm font-medium text-slate-600">Síntoma Principal</p>
+            <label htmlFor="symptom" className="block text-sm font-medium text-slate-600">Síntoma Principal</label>
             <input type="text" name="symptom" id="symptom" value={clientInfo.symptom} onChange={handleChange} className="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" />
           </div>
           <div>
-            <label htmlFor="duration" className="block text-sm font-medium text-slate-600">Duración del Síntoma</p>
+            <label htmlFor="duration" className="block text-sm font-medium text-slate-600">Duración del Síntoma</label>
             <input type="text" name="duration" id="duration" value={clientInfo.duration} onChange={handleChange} className="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" />
           </div>
         </div>

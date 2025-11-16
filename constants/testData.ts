@@ -7,17 +7,17 @@ export const screeningData: { series: Section['series']} = {
             id: '1.0',
             title: 'FASE PRELIMINAR: DETECCIÓN DE EXCEPCIONES',
             maxScore: 0,
-            description: `Este screening determina si el caso presenta excepciones que requieren abordaje especial versus síntoma que puede trabajarse directamente.<br/><br/><strong>PREGUNTA MAESTRA DE ENTRADA:</strong> "Si este síntoma desapareciera mañana completamente, ¿qué sería diferente en tu vida?"`,
+            description: `Este screening determina si el caso presenta excepciones que requieren abordaje especial versus síntoma que puede trabajarse directamente.<br/><br/><strong>Cómo responder:</strong> no hay respuestas “buenas o malas”. Responde lo más honestamente posible, incluso si sientes ambivalencia.<br/><br/><strong>PREGUNTA MAESTRA DE ENTRADA:</strong> "Si este síntoma desapareciera mañana completamente, ¿qué sería diferente en tu vida?"`,
             questions: [
                 {
                     id: '1.0.Q1',
-                    title: 'Evaluar la respuesta según este algoritmo:',
+                    title: 'Evalúa tu respuesta según este algoritmo:',
                     type: 'radio',
                     options: [
-                        { label: 'RESPUESTA TIPO A: "Sería completamente mejor. Podría hacer todo lo que no puedo hacer ahora. No veo ningún lado negativo." → RUTA: Proceder a confirmación de ausencia de excepciones.', value: 1 },
-                        { label: 'RESPUESTA TIPO B: Pausa larga, expresión de confusión, o respuesta compleja que incluye PERO: "Sería mejor, pero... no sé... algo se siente raro al imaginarlo." → RUTA: Alta probabilidad de excepciones presentes. Proceder a Parte 2.', value: 2 },
-                        { label: 'RESPUESTA TIPO C: Respuesta emocional intensa (lágrimas, ansiedad, ira) ante la pregunta misma. → RUTA: Muy alta probabilidad de excepciones. Proceder directamente a Parte 2.', value: 3 },
-                        { label: 'RESPUESTA TIPO D: "No puedo imaginarlo" o "No sé cómo sería" → RUTA: Probable Excepción 3 (Identidad Congelada). Proceder a evaluación específica.', value: 4 },
+                        { label: 'RESPUESTA TIPO A', description: '“Sería completamente mejor. Podría hacer todo lo que no puedo ahora. No veo ningún lado negativo.” → Probable ausencia de excepciones.', value: 1 },
+                        { label: 'RESPUESTA TIPO B', description: 'Pausa/ambivalencia: “Sería mejor, pero… algo se siente raro.” → Puede haber excepciones que convenga explorar.', value: 2 },
+                        { label: 'RESPUESTA TIPO C', description: 'Reacción emocional fuerte (llanto, ansiedad, enojo) ante la idea de que desaparezca. → Alta probabilidad de excepciones.', value: 3 },
+                        { label: 'RESPUESTA TIPO D', description: '“No puedo imaginarlo” / “No sé cómo sería”. → Sugiere Excepción 3 (Identidad Congelada).', value: 4 },
                     ]
                 }
             ]
@@ -26,16 +26,16 @@ export const screeningData: { series: Section['series']} = {
             id: '1.1',
             title: 'SECCIÓN 1.1: CONFIRMACIÓN DE AUSENCIA DE EXCEPCIONES',
             maxScore: 4,
-            description: 'Hacer estas cuatro preguntas. Si las cuatro respuestas son afirmativas, probablemente NO hay excepciones significativas:',
+            description: 'Responde las cuatro preguntas. Si todas indican ausencia, probablemente NO hay excepciones significativas. Si hay dudas o contradicciones, conviene avanzar a módulos específicos.',
             questions: [
                 {
                     id: '1.1.Q1',
-                    title: '¿Has intentado eliminar este síntoma anteriormente con compromiso genuino durante al menos 3 meses?',
+                    title: '¿Intentaste eliminar el síntoma durante al menos 3 meses con compromiso genuino?',
                     type: 'radio',
                     options: [
-                        { label: 'SÍ, y hubo progreso consistente sin sabotaje → +1 punto ausencia', value: 1 },
-                        { label: 'SÍ, pero hubo sabotaje o estancamiento inexplicable → -1 punto (indica excepción)', value: -1 },
-                        { label: 'NO he intentado seriamente eliminarlo → Neutral', value: 0 },
+                        { label: 'SÍ, con progreso consistente y sin sabotaje', description: 'Indica que el síntoma responde a intervenciones directas.', value: 1 },
+                        { label: 'SÍ, pero con sabotaje/estancamiento', description: 'Podría haber ganancia secundaria u otros factores que interfieren.', value: -1 },
+                        { label: 'NO he intentado seriamente', description: 'No concluyente respecto a excepciones.', value: 0 },
                     ]
                 },
                 {
@@ -43,29 +43,29 @@ export const screeningData: { series: Section['series']} = {
                     title: '¿Las personas más cercanas a ti querrían genuinamente que este síntoma desapareciera?',
                     type: 'radio',
                     options: [
-                        { label: 'SÍ, todos lo desearían sin ambivalencia → +1 punto ausencia', value: 1 },
-                        { label: 'Hay ambivalencia o alguien tiene inversión en que permanezca → -1 punto (indica excepción)', value: -1 },
-                        { label: 'No estoy seguro → Neutral', value: 0 },
+                        { label: 'SÍ, sin ambivalencia', description: 'Menor probabilidad de dinámicas relacionales que mantengan el síntoma.', value: 1 },
+                        { label: 'Hay ambivalencia o inversión de alguien', description: 'Puede indicar dinámica de apego o ganancia relacional.', value: -1 },
+                        { label: 'No estoy seguro', description: 'No concluyente; observar más adelante.', value: 0 },
                     ]
                 },
                 {
                     id: '1.1.Q3',
-                    title: '¿Puedes identificarte a ti mismo sin mencionar este síntoma?',
+                    title: '¿Puedes describirte a ti mismo sin mencionar este síntoma?',
                     type: 'radio',
                     options: [
-                        { label: 'SÍ, fácilmente. El síntoma no define quién soy → +1 punto ausencia', value: 1 },
-                        { label: 'No, el síntoma es parte central de mi identidad → -1 punto (indica excepción)', value: -1 },
-                        { label: 'Me cuesta separarlos → Neutral', value: 0 },
+                        { label: 'SÍ, fácilmente', description: 'Menor probabilidad de identidad fusionada con el síntoma.', value: 1 },
+                        { label: 'No, es parte central de mi identidad', description: 'Sugiere Identidad Congelada (E3).', value: -1 },
+                        { label: 'Me cuesta separarlos', description: 'Indicio leve de fusión identidad-síntoma.', value: 0 },
                     ]
                 },
                 {
                     id: '1.1.Q4',
-                    title: '¿Hay eventos traumáticos sin procesar que coincidan temporalmente con el inicio del síntoma?',
+                    title: '¿Existen eventos traumáticos sin procesar que coincidan con el inicio del síntoma?',
                     type: 'radio',
                     options: [
-                        { label: 'NO, no hay trauma significativo relacionado → +1 punto ausencia', value: 1 },
-                        { label: 'SÍ, hay trauma claro entrelazado → -1 punto (indica excepción)', value: -1 },
-                        { label: 'Posiblemente, pero no estoy seguro → Neutral', value: 0 },
+                        { label: 'NO, no hay trauma relacionado', description: 'Menor probabilidad de trauma entrelazado.', value: 1 },
+                        { label: 'SÍ, hay trauma claro entrelazado', description: 'Sugiere Excepción 2 (Trauma no procesado).', value: -1 },
+                        { label: 'Posiblemente / no seguro', description: 'Requiere evaluación más fina en E2.', value: 0 },
                     ]
                 }
             ]
@@ -83,12 +83,38 @@ export const sections: Section[] = [
                 id: '2.1.A',
                 title: 'SERIE A: PREGUNTAS DIRECTAS',
                 maxScore: 25,
+                description: 'Explora beneficios (conscientes o no) de mantener el síntoma. No implica culpa; busca entender la función que cumple.',
                 questions: [
-                    { id: '2.1.A1', title: '¿De qué manera este síntoma te sirve, aunque sea de forma que no te gusta admitir?', type: 'radio', options: [{label: 'Negación inmediata sin reflexión', value: 0}, {label: 'Pausa larga seguida de reconocimiento parcial', value: 2}, {label: 'Articulación clara de múltiples ganancias', value: 4}, {label: 'Articulación profunda con emoción', value: 5}] },
-                    { id: '2.1.A2', title: 'Si el síntoma desapareciera, ¿qué responsabilidades o demandas tendrías que enfrentar que actualmente puedes evitar?', type: 'radio', options: [{label: 'Ninguna, no evito nada', value: 0}, {label: 'Identifica 1-2 responsabilidades', value: 2}, {label: 'Identifica 3-5 responsabilidades', value: 4}, {label: 'Reconoce que el síntoma es su única forma de poner límites', value: 5}] },
-                    { id: '2.1.A3', title: '¿Cómo reaccionarían las personas importantes en tu vida si mejoraras completamente?', type: 'radio', options: [{label: 'Todos estarían felices sin ambivalencia', value: 0}, {label: 'Algunos se alegrarían pero otros... no estoy seguro', value: 2}, {label: 'Alguien importante perdería su rol de cuidador', value: 4}, {label: 'Perdería atención/conexión que solo recibo cuando estoy enfermo', value: 5}] },
-                    { id: '2.1.A4', title: '¿Hay una parte de ti que secretamente no quiere que el síntoma desaparezca?', type: 'radio', options: [{label: 'No, quiero que desaparezca completamente', value: 0}, {label: 'Quizás... me confunde esta pregunta', value: 2}, {label: 'Sí, hay una parte que se resiste aunque no entiendo por qué', value: 4}, {label: 'Sí, esa parte tiene razones específicas que puedo articular', value: 5}] },
-                    { id: '2.1.A5', title: 'Si tuvieras que elegir entre: (A) curar el síntoma pero perder algo importante, o (B) mantener el síntoma y mantener eso importante, ¿qué elegirías?', type: 'radio', options: [{label: 'Obviamente A, curaría el síntoma sin dudarlo', value: 0}, {label: 'Pausa larga, dificultad para responder', value: 3}, {label: 'Dependería de qué tan importante sea eso que pierdo', value: 4}, {label: 'Honestamente, podría elegir B', value: 5}] }
+                    { id: '2.1.A1', title: '¿De qué manera este síntoma te sirve, aunque cueste admitirlo?', type: 'radio', options: [
+                        {label: 'Negación inmediata', description: 'Respuesta rápida sin explorar beneficios posibles.', value: 0},
+                        {label: 'Reconocimiento parcial', description: 'Admite algún beneficio luego de pensarlo.', value: 2},
+                        {label: 'Múltiples ganancias', description: 'Enumera varias funciones del síntoma.', value: 4},
+                        {label: 'Ganancias con emoción', description: 'Reconoce beneficios con carga emocional evidente.', value: 5}
+                    ] },
+                    { id: '2.1.A2', title: 'Si desapareciera, ¿qué responsabilidades afrontarías que hoy evitas?', type: 'radio', options: [
+                        {label: 'Ninguna', description: 'No identifica responsabilidades evitadas.', value: 0},
+                        {label: '1-2 responsabilidades', value: 2},
+                        {label: '3-5 responsabilidades', value: 4},
+                        {label: 'Solo así pone límites', description: 'El síntoma es su forma principal de poner límites.', value: 5}
+                    ] },
+                    { id: '2.1.A3', title: '¿Cómo reaccionarían personas importantes si mejoras completamente?', type: 'radio', options: [
+                        {label: 'Felices sin ambivalencia', value: 0},
+                        {label: 'Algunos felices, hay dudas', value: 2},
+                        {label: 'Alguien perdería rol de cuidador', value: 4},
+                        {label: 'Perdería atención/conexión', description: 'Siente que solo recibe atención si está enfermo.', value: 5}
+                    ] },
+                    { id: '2.1.A4', title: '¿Hay una parte de ti que no quiere que desaparezca?', type: 'radio', options: [
+                        {label: 'No, quiero que desaparezca', value: 0},
+                        {label: 'Tal vez, me confunde la pregunta', value: 2},
+                        {label: 'Sí, parte que se resiste (sin claridad)', value: 4},
+                        {label: 'Sí, con razones específicas', description: 'Puede explicar por qué esa parte protege el síntoma.', value: 5}
+                    ] },
+                    { id: '2.1.A5', title: 'Si tuvieras que elegir entre sanar y perder algo importante vs. mantener el síntoma y conservarlo…', type: 'radio', options: [
+                        {label: 'Elegiría sanar sin dudarlo', value: 0},
+                        {label: 'Dudaría / pausa larga', value: 3},
+                        {label: 'Depende de lo que pierdo', value: 4},
+                        {label: 'Podría elegir mantener el síntoma', value: 5}
+                    ] }
                 ]
             },
             {
@@ -105,7 +131,7 @@ export const sections: Section[] = [
                 id: '2.1.C',
                 title: 'SERIE C: ANÁLISIS FUNCIONAL',
                 maxScore: 10,
-                description: 'Completar esta matriz. Cada necesidad identificada que SOLO puede satisfacerse mediante el síntoma suma 2 puntos.',
+                description: 'Completa esta matriz marcando SÍ/NO. Suma 2 puntos si el síntoma satisface la necesidad y no hay alternativa viable. Esto ayuda a detectar funciones protectoras del síntoma.',
                 questions: [
                     { id: '2.1.C1', title: 'Análisis funcional', type: 'table', rows: [ {id: 'descanso', label: 'Descanso sin culpa'}, {id: 'atencion', label: 'Atención/cuidado'}, {id: 'limites', label: 'Límites/poder decir no'}, {id: 'conexion', label: 'Conexión con figura importante'}, {id: 'validacion', label: 'Validación de sufrimiento'} ] }
                 ]
@@ -121,10 +147,11 @@ export const sections: Section[] = [
                 id: '2.2.A',
                 title: 'SERIE A: IDENTIFICACIÓN TEMPORAL',
                 maxScore: 15,
+                description: 'Relaciona el inicio del síntoma con eventos de vida. Un vínculo temporal claro con trauma sugiere entrelazamiento.',
                 questions: [
-                    { id: '2.2.A1', title: '¿Puedes identificar cuándo comenzó exactamente este síntoma?', type: 'radio', options: [{label: 'No, siempre ha estado ahí o fue gradual', value: 0}, {label: 'Aproximadamente en cierto período', value: 2}, {label: 'Sí, mes/año específico', value: 4}, {label: 'Comenzó el día exacto de un evento traumático', value: 5}] },
-                    { id: '2.2.A2', title: '¿Qué estaba sucediendo en tu vida cuando el síntoma comenzó?', type: 'radio', options: [{label: 'Nada significativo', value: 0}, {label: 'Estrés general', value: 1}, {label: 'Evento estresante importante', value: 3}, {label: 'Evento claramente traumático', value: 5}] },
-                    { id: '2.2.A3', title: '¿Ese evento fue procesado completamente en su momento?', type: 'radio', options: [{label: 'Sí, lo procesé y superé', value: 0}, {label: 'No estoy seguro qué significa procesarlo', value: 2}, {label: 'No, nunca hablé de ello', value: 4}, {label: 'No, fue demasiado abrumador para procesarlo', value: 5}] }
+                    { id: '2.2.A1', title: '¿Puedes identificar cuándo comenzó exactamente este síntoma?', type: 'radio', options: [{label: 'No, siempre ha estado ahí o fue gradual', description: 'No hay fecha aproximada ni evento claro asociado.', value: 0}, {label: 'Aproximadamente en cierto período', description: 'Ubicas un rango de tiempo (p.ej., “a fines de 2019”).', value: 2}, {label: 'Sí, mes/año específico', description: 'Puedes decir un mes o año concretos de inicio.', value: 4}, {label: 'Comenzó el día exacto de un evento traumático', description: 'El inicio coincide exactamente con un evento impactante.', value: 5}] },
+                    { id: '2.2.A2', title: '¿Qué estaba sucediendo en tu vida cuando el síntoma comenzó?', type: 'radio', options: [{label: 'Nada significativo', description: 'No recuerdas cambios o situaciones destacables.', value: 0}, {label: 'Estrés general', description: 'Hubo estrés cotidiano aumentado, sin un hecho puntual.', value: 1}, {label: 'Evento estresante importante', description: 'Pérdida, conflicto, cambio laboral, etc.', value: 3}, {label: 'Evento claramente traumático', description: 'Accidente, abuso, violencia, desastre, etc.', value: 5}] },
+                    { id: '2.2.A3', title: '¿Ese evento fue procesado completamente en su momento?', type: 'radio', options: [{label: 'Sí, lo procesé y superé', description: 'Hablado, elaborado y con cierre emocional.', value: 0}, {label: 'No estoy seguro qué significa procesarlo', description: 'Dudas sobre haberlo trabajado emocionalmente.', value: 2}, {label: 'No, nunca hablé de ello', description: 'Se evitó abordar el tema con nadie.', value: 4}, {label: 'No, fue demasiado abrumador para procesarlo', description: 'Aparece bloqueo, disociación o angustia intensa.', value: 5}] }
                 ]
             },
             {
@@ -150,18 +177,19 @@ export const sections: Section[] = [
                 id: '2.2.D',
                 title: 'SERIE D: SÍNTOMAS DE TRAUMA CONCURRENTES',
                 maxScore: 10,
+                description: 'Marca los síntomas que experimentas actualmente. No es diagnóstico formal; solo reconoce patrones que acompañan al trauma.',
                 questions: [
                     { id: '2.2.D1', title: 'Marcar todos los presentes. Cada uno suma 1 punto.', type: 'checkbox-group', maxScore:10, options: [
-                        {label: 'Hipervigilancia', value: 1},
-                        {label: 'Respuestas de sobresalto exageradas', value: 1},
-                        {label: 'Evitación de recordatorios del trauma', value: 1},
-                        {label: 'Dificultad de concentración persistente', value: 1},
-                        {label: 'Irritabilidad o ira desproporcionada', value: 1},
-                        {label: 'Problemas de sueño', value: 1},
-                        {label: 'Sensación de estar separado de uno mismo (disociación)', value: 1},
-                        {label: 'Creencias negativas sobre uno mismo surgidas del trauma', value: 1},
-                        {label: 'Culpa o vergüenza relacionada con el evento', value: 1},
-                        {label: 'Pérdida de interés en actividades', value: 1}
+                        {id:'hipervigilancia', label: 'Hipervigilancia', value: 1},
+                        {id:'sobresalto', label: 'Respuestas de sobresalto exageradas', description: 'Te asustas con facilidad ante estímulos menores.', value: 1},
+                        {id:'evitacion', label: 'Evitación de recordatorios del trauma', description: 'Evitas lugares, personas o temas que recuerdan el evento.', value: 1},
+                        {id:'concentracion', label: 'Dificultad de concentración persistente', description: 'Te cuesta mantener la atención sostenida.', value: 1},
+                        {id:'ira', label: 'Irritabilidad o ira desproporcionada', value: 1},
+                        {id:'sueno', label: 'Problemas de sueño', value: 1},
+                        {id:'disociacion', label: 'Sensación de estar separado de uno mismo (disociación)', description: 'Sensación de irrealidad, “como si no estuviera en mi cuerpo”.', value: 1},
+                        {id:'creencias_negativas', label: 'Creencias negativas sobre uno mismo surgidas del trauma', value: 1},
+                        {id:'culpa_verguenza', label: 'Culpa o vergüenza relacionada con el evento', value: 1},
+                        {id:'anhedonia', label: 'Pérdida de interés en actividades', value: 1}
                     ]}
                 ]
             }
@@ -177,13 +205,13 @@ export const sections: Section[] = [
                 { id: '2.3.A2', title: 'Uso de verbo TENER o EXPERIMENTAR ("Tengo ansiedad")', description: 'Ejemplos: "Tengo ansiedad", "Experimento depresión", "Vivo con [condición]"', type: 'radio', options: [{label: '6+ veces', value: 0}, {label: '3-5 veces', value: 1}, {label: '1-2 veces', value: 3}, {label: '0 veces (solo usa SER)', value: 5}] }
             ]},
             { id: '2.3.B', title: 'SERIE B: CAPACIDAD DE SEPARACIÓN', maxScore: 15, questions: [
-                { id: '2.3.B1', title: 'Completa esta frase: Yo soy _____ (sin mencionar el síntoma)', type: 'radio', options: [{label: 'Lista 5+ características', value: 0}, {label: 'Lista 2-4 características', value: 2}, {label: 'Lista 1-2 características', value: 4}, {label: 'No puede completar sin mencionar síntoma', value: 5}] },
-                { id: '2.3.B2', title: 'Si el síntoma desapareciera completamente, ¿quién serías?', type: 'radio', options: [{label: 'Describe versión de sí mismo fácilmente', value: 0}, {label: 'Describe con dificultad', value: 2}, {label: '"No sé" o "No puedo imaginarlo"', value: 4}, {label: '"No sería yo" o "Sería una persona diferente"', value: 5}] },
-                { id: '2.3.B3', title: '¿Cuándo piensas en ti mismo, el síntoma aparece en ese pensamiento?', type: 'radio', options: [{label: 'Raramente', value: 0}, {label: 'A veces', value: 2}, {label: 'Frecuentemente', value: 4}, {label: 'Siempre', value: 5}] }
+                { id: '2.3.B1', title: 'Completa esta frase: Yo soy _____ (sin mencionar el síntoma)', type: 'radio', options: [{label: 'Lista 5+ características', description: 'Tiene un autoconcepto amplio y separado del síntoma.', value: 0}, {label: 'Lista 2-4 características', description: 'Identidad parcialmente diferenciada.', value: 2}, {label: 'Lista 1-2 características', description: 'Identidad limitada, tendencia a fusionarse con el síntoma.', value: 4}, {label: 'No puede completar sin mencionar síntoma', description: 'Fuerte fusión identidad-síntoma.', value: 5}] },
+                { id: '2.3.B2', title: 'Si el síntoma desapareciera completamente, ¿quién serías?', type: 'radio', options: [{label: 'Describe versión de sí mismo fácilmente', description: 'Puede imaginar identidad sin el síntoma.', value: 0}, {label: 'Describe con dificultad', description: 'Le cuesta pero logra separar identidad del síntoma.', value: 2}, {label: '"No sé" o "No puedo imaginarlo"', description: 'Imposibilidad de imaginarse sin el síntoma.', value: 4}, {label: '"No sería yo" o "Sería una persona diferente"', description: 'El síntoma se vive como núcleo identitario.', value: 5}] },
+                { id: '2.3.B3', title: '¿Cuándo piensas en ti mismo, el síntoma aparece en ese pensamiento?', type: 'radio', options: [{label: 'Raramente', description: 'Pensamiento de sí mismo suele ser independiente del síntoma.', value: 0}, {label: 'A veces', description: 'El síntoma aparece en algunos pensamientos propios.', value: 2}, {label: 'Frecuentemente', description: 'El síntoma suele estar presente al pensar en sí mismo.', value: 4}, {label: 'Siempre', description: 'Constante fusión del pensamiento propio con el síntoma.', value: 5}] }
             ]},
             { id: '2.3.C', title: 'SERIE C: UBICUIDAD NARRATIVA', maxScore: 10, questions: [
-                 { id: '2.3.C1', title: 'En una narrativa de vida de 5 min, ¿cuántas veces menciona el síntoma?', type: 'radio', options: [{label: '0-1 veces', value: 0}, {label: '2-3 veces', value: 2}, {label: '4-6 veces', value: 4}, {label: '7+ veces', value: 5}] },
-                 { id: '2.3.C2', title: '¿Hay períodos de vida recordados como libres del síntoma?', type: 'radio', options: [{label: 'Sí, claramente', value: 0}, {label: 'Recuerda pero reinterpreta', value: 3}, {label: 'No, está presente en toda la narrativa', value: 5}] }
+                 { id: '2.3.C1', title: 'En una narrativa de vida de 5 min, ¿cuántas veces menciona el síntoma?', type: 'radio', options: [{label: '0-1 veces', description: 'El síntoma no domina la narrativa personal.', value: 0}, {label: '2-3 veces', description: 'Aparece de forma ocasional.', value: 2}, {label: '4-6 veces', description: 'Presencia frecuente del síntoma en la historia.', value: 4}, {label: '7+ veces', description: 'El síntoma estructura fuertemente el relato personal.', value: 5}] },
+                 { id: '2.3.C2', title: '¿Hay períodos de vida recordados como libres del síntoma?', type: 'radio', options: [{label: 'Sí, claramente', description: 'Reconoce épocas sin el síntoma.', value: 0}, {label: 'Recuerda pero reinterpreta', description: 'Minimiza esos períodos o les resta validez.', value: 3}, {label: 'No, está presente en toda la narrativa', description: 'Vivencia de continuidad total del síntoma.', value: 5}] }
             ]},
             { id: '2.3.D', title: 'SERIE D: IDENTIFICACIÓN SOCIAL', maxScore: 10, questions: [
                  { id: '2.3.D1', title: '¿Perteneces a comunidades o grupos organizados alrededor de tu diagnóstico/síntoma?', type: 'radio', options: [{label: 'No', value: 0}, {label: 'Ocasionalmente participo', value: 2}, {label: 'Miembro activo', value: 4}, {label: 'Es mi comunidad principal', value: 5}] },
@@ -230,12 +258,12 @@ export const sections: Section[] = [
         maxScore: 50,
         series: [
              { id: '2.5.A', title: 'SERIE A: MAPEO DE ZONAS', maxScore: 10, questions: [
-                { id: '2.5.A1', title: 'Porcentaje de tiempo en Zona Verde (calmo, presente)', type: 'radio', options: [{label: '60-100%', value: 0}, {label: '40-59%', value: 2}, {label: '20-39%', value: 4}, {label: '0-19%', value: 5}] },
-                { id: '2.5.A2', title: 'Oscilación entre zonas (roja/hiper, azul/hipo)', type: 'radio', options: [{label: 'Transiciones graduales', value: 0}, {label: 'Algunas transiciones abruptas', value: 2}, {label: 'Frecuentes transiciones abruptas de rojo a azul', value: 5}] }
+                { id: '2.5.A1', title: 'Porcentaje de tiempo en Zona Verde (calmo, presente)', type: 'radio', options: [{label: '60-100%', description: 'Predomina regulación; episodios de desborde son poco frecuentes.', value: 0}, {label: '40-59%', description: 'Regulación moderada con desbordes ocasionales.', value: 2}, {label: '20-39%', description: 'Pasa más tiempo fuera de la zona óptima.', value: 4}, {label: '0-19%', description: 'Casi siempre en hiper/hipo activación.', value: 5}] },
+                { id: '2.5.A2', title: 'Oscilación entre zonas (roja/hiper, azul/hipo)', type: 'radio', options: [{label: 'Transiciones graduales', description: 'Cambios suaves y manejables.', value: 0}, {label: 'Algunas transiciones abruptas', description: 'A veces cambia de estado de forma repentina.', value: 2}, {label: 'Frecuentes transiciones abruptas de rojo a azul', description: 'Saltos bruscos entre extremos sin zona media.', value: 5}] }
             ]},
              { id: '2.5.B', title: 'SERIE B: UMBRAL DE DESREGULACIÓN', maxScore: 10, questions: [
-                { id: '2.5.B1', title: '¿Qué tan pequeño puede ser un estímulo estresante para sacarte de tu zona de funcionamiento?', type: 'radio', options: [{label: 'Tolero mucho estrés', value: 0}, {label: 'Eventos moderados me desregulan', value: 2}, {label: 'Eventos menores me desregulan', value: 4}, {label: 'Cosas triviales me sacan completamente', value: 5}] },
-                { id: '2.5.B2', title: 'Cuando te desregulas, ¿cuánto tiempo te toma regresar a tu estado balanceado?', type: 'radio', options: [{label: 'Minutos a una hora', value: 0}, {label: 'Varias horas', value: 2}, {label: 'Un día completo o más', value: 4}, {label: 'Días o semanas', value: 5}] }
+                { id: '2.5.B1', title: '¿Qué tan pequeño puede ser un estímulo estresante para sacarte de tu zona de funcionamiento?', type: 'radio', options: [{label: 'Tolero mucho estrés', description: 'Requiere estresores fuertes para desregularse.', value: 0}, {label: 'Eventos moderados me desregulan', description: 'Estresores medianos impactan notablemente.', value: 2}, {label: 'Eventos menores me desregulan', description: 'Pequeñas situaciones alteran su regulación.', value: 4}, {label: 'Cosas triviales me sacan completamente', description: 'Hiper/hipo activación ante estímulos mínimos.', value: 5}] },
+                { id: '2.5.B2', title: 'Cuando te desregulas, ¿cuánto tiempo te toma regresar a tu estado balanceado?', type: 'radio', options: [{label: 'Minutos a una hora', description: 'Recuperación rápida con estrategias efectivas.', value: 0}, {label: 'Varias horas', description: 'Necesita tiempo y apoyo para volver a regularse.', value: 2}, {label: 'Un día completo o más', description: 'Recuperación lenta y costosa.', value: 4}, {label: 'Días o semanas', description: 'Desregulación prolongada con gran impacto funcional.', value: 5}] }
             ]},
              { id: '2.5.C', title: 'SERIE C: SÍNTOMAS DE DESREGULACIÓN', maxScore: 5, scoreCalculation: 'max', description: 'El score de esta serie es el MÁS ALTO entre los síntomas de Zona Roja y Zona Azul.', questions: [
                 { id: '2.5.C1', title: 'Síntomas en ZONA ROJA (hiperactivación)', type: 'radio', options: [{label: '0-2 síntomas', value: 0}, {label: '3-5 síntomas', value: 2}, {label: '6-8 síntomas', value: 4}, {label: '9-10 síntomas', value: 5}] },
@@ -289,16 +317,16 @@ export const sections: Section[] = [
         maxScore: 50,
         series: [
              { id: '2.7.A', title: 'SERIE A: CARACTERÍSTICAS TEMPORALES', maxScore: 10, questions: [
-                { id: '2.7.A1', title: '¿Cuánto tiempo ha persistido este síntoma más allá del tiempo esperado de curación tisular (3-6 meses)?', type: 'radio', options: [{label: '< 6 meses', value: 0}, {label: '6-12 meses', value: 2}, {label: '1-3 años', value: 4}, {label: '> 3 años', value: 5}] },
-                { id: '2.7.A2', title: '¿El dolor/síntoma ha ido intensificándose con el tiempo en lugar de mejorar?', type: 'radio', options: [{label: 'No, ha permanecido estable o ha mejorado', value: 0}, {label: 'Ha variado sin patrón claro', value: 2}, {label: 'Sí, gradualmente ha empeorado', value: 4}, {label: 'Sí, ha empeorado dramáticamente y también se ha expandido a nuevas áreas', value: 5}] }
+                { id: '2.7.A1', title: '¿Cuánto tiempo ha persistido este síntoma más allá del tiempo esperado de curación tisular (3-6 meses)?', type: 'radio', options: [{label: '< 6 meses', description: 'Duración corta; menor sospecha de sensibilización central.', value: 0}, {label: '6-12 meses', description: 'Persistencia media del síntoma.', value: 2}, {label: '1-3 años', description: 'Persistencia prolongada sugiere procesos centrales.', value: 4}, {label: '> 3 años', description: 'Crónico de larga data; alta sospecha de sensibilización.', value: 5}] },
+                { id: '2.7.A2', title: '¿El dolor/síntoma ha ido intensificándose con el tiempo en lugar de mejorar?', type: 'radio', options: [{label: 'No, ha permanecido estable o ha mejorado', description: 'Menor probabilidad de proceso central progresivo.', value: 0}, {label: 'Ha variado sin patrón claro', description: 'Fluctuación sin tendencia marcada.', value: 2}, {label: 'Sí, gradualmente ha empeorado', description: 'Aumento sostenido en intensidad/frecuencia.', value: 4}, {label: 'Sí, ha empeorado dramáticamente y también se ha expandido a nuevas áreas', description: 'Intensificación y expansión corporal.', value: 5}] }
             ]},
              { id: '2.7.B', title: 'SERIE B: DISTRIBUCIÓN Y EXPANSIÓN', maxScore: 10, questions: [
-                { id: '2.7.B1', title: '¿El dolor/síntoma se ha expandido desde su ubicación original a otras partes del cuerpo?', type: 'radio', options: [{label: 'No, permanece en el sitio original', value: 0}, {label: 'Se ha expandido a 1 área adyacente', value: 2}, {label: 'Se ha expandido a 2-3 áreas', value: 4}, {label: 'Se ha vuelto generalizado en múltiples áreas sin relación anatómica clara', value: 5}] },
+                { id: '2.7.B1', title: '¿El dolor/síntoma se ha expandido desde su ubicación original a otras partes del cuerpo?', type: 'radio', options: [{label: 'No, permanece en el sitio original', description: 'No hay expansión corporal.', value: 0}, {label: 'Se ha expandido a 1 área adyacente', description: 'Extensión limitada a zona cercana.', value: 2}, {label: 'Se ha expandido a 2-3 áreas', description: 'Extensión moderada a múltiples zonas.', value: 4}, {label: 'Se ha vuelto generalizado en múltiples áreas sin relación anatómica clara', description: 'Difusión amplia no explicada por anatomía local.', value: 5}] },
                 { id: '2.7.B2', title: '¿Tienes múltiples diagnósticos médicos funcionales sin hallazgos estructurales claros?', description: 'Ejemplos: fibromialgia, síndrome de fatiga crónica, intestino irritable, cistitis intersticial, migrañas, síndrome de dolor regional complejo', type: 'radio', options: [{label: 'Ningún diagnóstico adicional', value: 0}, {label: '1 diagnóstico funcional adicional', value: 2}, {label: '2-3 diagnósticos funcionales', value: 4}, {label: '4+ diagnósticos funcionales coexistentes', value: 5}] }
             ]},
             { id: '2.7.C', title: 'SERIE C: ALODINIA E HIPERALGESIA', maxScore: 10, questions: [
-                { id: '2.7.C1', title: '¿Sientes dolor con estímulos que normalmente no deberían doler (alodinia)?', description: 'Ejemplos: roce ligero de ropa, abrazo suave, agua de ducha, cepillarse el cabello.', type: 'radio', options: [{label: 'No, solo duele lo que objetivamente debería doler', value: 0}, {label: 'Ocasionalmente algunas cosas causan más molestia de lo esperado', value: 2}, {label: 'Frecuentemente estímulos leves causan dolor', value: 4}, {label: 'Casi cualquier contacto o estímulo causa dolor', value: 5}] },
-                { id: '2.7.C2', title: 'Cuando algo duele, ¿la intensidad del dolor es desproporcional al estímulo (hiperalgesia)?', type: 'radio', options: [{label: 'Sí, estímulos pequeños causan dolor pequeño, estímulos grandes causan dolor grande', value: 0}, {label: 'A veces respondo más fuerte de lo esperado', value: 2}, {label: 'Frecuentemente estímulos menores causan dolor severo', value: 4}, {label: 'Hasta el más mínimo estímulo puede causar dolor insoportable', value: 5}] }
+                { id: '2.7.C1', title: '¿Sientes dolor con estímulos que normalmente no deberían doler (alodinia)?', description: 'Ejemplos: roce ligero de ropa, abrazo suave, agua de ducha, cepillarse el cabello.', type: 'radio', options: [{label: 'No, solo duele lo que objetivamente debería doler', description: 'Respuesta dolorosa acorde al estímulo.', value: 0}, {label: 'Ocasionalmente algunas cosas causan más molestia de lo esperado', description: 'Aumenta la molestia en situaciones puntuales.', value: 2}, {label: 'Frecuentemente estímulos leves causan dolor', description: 'Dolor ante estímulos usualmente inocuos.', value: 4}, {label: 'Casi cualquier contacto o estímulo causa dolor', description: 'Dolor generalizado con estímulos mínimos.', value: 5}] },
+                { id: '2.7.C2', title: 'Cuando algo duele, ¿la intensidad del dolor es desproporcional al estímulo (hiperalgesia)?', type: 'radio', options: [{label: 'Sí, estímulos pequeños causan dolor pequeño, estímulos grandes causan dolor grande', description: 'Proporcionalidad conservada.', value: 0}, {label: 'A veces respondo más fuerte de lo esperado', description: 'Respuesta amplificada ocasionalmente.', value: 2}, {label: 'Frecuentemente estímulos menores causan dolor severo', description: 'Aumento notable de la intensidad.', value: 4}, {label: 'Hasta el más mínimo estímulo puede causar dolor insoportable', description: 'Hiper-respuesta extrema al dolor.', value: 5}] }
             ]},
              { id: '2.7.D', title: 'SERIE D: CATASTROFIZACIÓN', maxScore: 10, scoreMultiplier: 0.5, description: 'Items adaptados de Pain Catastrophizing Scale. Responda en escala 0-4. El score final es la suma total x 0.5.', questions: [
                 { id: '2.7.D1', title: '"Cuando tengo dolor, pienso que nunca va a mejorar"', type: 'select', options: [{label: 'Nunca (0)', value: 0}, {label: 'Raramente (1)', value: 1}, {label: 'A veces (2)', value: 2}, {label: 'Frecuentemente (3)', value: 3}, {label: 'Siempre (4)', value: 4}] },
@@ -308,8 +336,8 @@ export const sections: Section[] = [
                 { id: '2.7.D5', title: '"Cuando tengo dolor, siento que es terrible y que nunca mejorará"', type: 'select', options: [{label: 'Nunca (0)', value: 0}, {label: 'Raramente (1)', value: 1}, {label: 'A veces (2)', value: 2}, {label: 'Frecuentemente (3)', value: 3}, {label: 'Siempre (4)', value: 4}] },
             ]},
              { id: '2.7.E', title: 'SERIE E: EVITACIÓN POR MIEDO', maxScore: 10, questions: [
-                { id: '2.7.E1', title: '¿Evitas ciertos movimientos o actividades por miedo a que causen dolor o empeoren tu condición?', type: 'radio', options: [{label: 'No, mantengo mis actividades normales', value: 0}, {label: 'Evito algunas actividades muy específicas', value: 1}, {label: 'Evito muchas actividades por precaución', value: 3}, {label: 'Mi vida está severamente limitada por evitación', value: 5}] },
-                { id: '2.7.E2', title: '¿Crees que el dolor significa que te estás dañando?', type: 'radio', options: [{label: 'No, entiendo que dolor no siempre significa daño', value: 0}, {label: 'A veces pienso que sí', value: 2}, {label: 'Generalmente sí, el dolor me indica que algo malo está pasando', value: 4}, {label: 'Absolutamente, cada episodio de dolor significa más daño', value: 5}] }
+                { id: '2.7.E1', title: '¿Evitas ciertos movimientos o actividades por miedo a que causen dolor o empeoren tu condición?', type: 'radio', options: [{label: 'No, mantengo mis actividades normales', description: 'No hay evitación por miedo.', value: 0}, {label: 'Evito algunas actividades muy específicas', description: 'Evitación focalizada (p.ej., levantar peso).', value: 1}, {label: 'Evito muchas actividades por precaución', description: 'Evitación amplia para “no empeorar”.', value: 3}, {label: 'Mi vida está severamente limitada por evitación', description: 'Gran impacto en autonomía y funcionamiento.', value: 5}] },
+                { id: '2.7.E2', title: '¿Crees que el dolor significa que te estás dañando?', type: 'radio', options: [{label: 'No, entiendo que dolor no siempre significa daño', description: 'Diferencia sensación de daño real.', value: 0}, {label: 'A veces pienso que sí', description: 'Ciertas creencias de daño ante dolor.', value: 2}, {label: 'Generalmente sí, el dolor me indica que algo malo está pasando', description: 'Sesgo constante a interpretar dolor como daño.', value: 4}, {label: 'Absolutamente, cada episodio de dolor significa más daño', description: 'Creencia rígida de daño = dolor.', value: 5}] }
             ]}
         ]
     }

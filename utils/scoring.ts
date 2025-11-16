@@ -4,10 +4,18 @@ import type { Series, Scores, Section } from '../types';
 export const calculateSeriesScore = (series: Series, scores: Scores): number => {
   const questionScores = series.questions.map(q => {
     if (q.type === 'checkbox-group') {
-      return q.options?.reduce((subTotal, opt) => subTotal + (scores[opt.label] || 0), 0) || 0;
+      return q.options?.reduce((subTotal, opt) => subTotal + (scores[(opt.id || opt.label)] || 0), 0) || 0;
     }
     if (q.type === 'table') {
-        return q.rows?.reduce((tableTotal, row) => tableTotal + (scores[row.id] || 0), 0) || 0;
+        // Derivado: +2 si satisface (1) y no hay alternativa (0)
+        return q.rows?.reduce((tableTotal, row) => {
+          const idSatisface = `${row.id}-satisface`;
+          const idAlternativa = `${row.id}-alternativa`;
+          const satisfaceValue = scores[idSatisface] || 0;
+          const alternativaValue = scores[idAlternativa] || 0;
+          const rowScore = (satisfaceValue === 1 && alternativaValue === 0) ? 2 : 0;
+          return tableTotal + rowScore;
+        }, 0) || 0;
     }
     return (scores[q.id] || 0);
   });

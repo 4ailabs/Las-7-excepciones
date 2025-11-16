@@ -44,8 +44,11 @@ export const ExceptionModule: React.FC<ExceptionModuleProps> = ({ section, score
   return (
     <div className="space-y-10">
       {section.series.map((series) => (
-        <div key={series.id} className="p-4 border border-slate-200 rounded-lg">
-          <h3 className="text-xl font-semibold text-slate-800 border-b-2 border-blue-200 pb-2 mb-4">{series.title}</h3>
+        <div key={series.id} className="p-4 border border-slate-200/70 rounded-xl bg-white/80 backdrop-blur supports-[backdrop-filter]:bg-white/70 shadow-sm">
+          <h3 className="text-xl font-semibold text-slate-900 tracking-tight flex items-center gap-2 pb-2 mb-3">
+            <span className="px-2 py-0.5 rounded-full text-xs font-bold bg-slate-900 text-white">{series.id}</span>
+            {series.title}
+          </h3>
           {series.description && <p className="mb-4 text-slate-600" dangerouslySetInnerHTML={{ __html: series.description }}></p>}
           <div className="space-y-6">
             {series.questions.map((question) => (
@@ -55,10 +58,10 @@ export const ExceptionModule: React.FC<ExceptionModuleProps> = ({ section, score
           <SeriesScore series={series} scores={scores} />
         </div>
       ))}
-      <div className={`mt-8 p-4 border-l-4 rounded-r-lg ${colorClasses}`}>
-        <h4 className="font-bold">Score Total Excepción #{section.id.slice(1)}</h4>
-        <p className="text-3xl font-bold mt-2">{totalScore} / {section.maxScore} puntos</p>
-        <p className="mt-1 font-semibold">Interpretación: {interpretation}</p>
+      <div className={`mt-8 p-5 rounded-xl ring-1 bg-white/80 backdrop-blur supports-[backdrop-filter]:bg-white/70 ${colorClasses.replace('border-l-4 rounded-r-lg','')} shadow`}>
+        <h4 className="font-bold tracking-tight">Score Total Excepción #{section.id.slice(1)}</h4>
+        <p className="text-3xl font-extrabold mt-1">{totalScore} / {section.maxScore} puntos</p>
+        <p className="mt-1 font-semibold opacity-90">Interpretación: {interpretation}</p>
       </div>
     </div>
   );
