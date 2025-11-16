@@ -1,3 +1,18 @@
+## v0.1.1 - UX refresh, mobile optimization, accessibility, scoring fixes
+
+Highlights:
+- Modern UI: gradientes, glass effect, botones mejorados, tarjetas con hover.
+- Mobile-first: botones apilados y targets táctiles más grandes.
+- Accesibilidad: foco visible, `aria-describedby`, validación con contador de pendientes.
+- Datos/Scoring: ids estables en checkbox-group; scoring de tablas derivado; `maxScore` dinámico.
+- Tooling: Tailwind local (PostCSS/purge), ESLint + Prettier, Vitest con pruebas de scoring.
+- Contenido: descripciones enriquecidas para opciones y series clave.
+
+Archivos principales tocados:
+- `App.tsx`, `components/*`, `constants/testData.ts`, `utils/scoring.ts`
+- Configuración: `tailwind.config.js`, `postcss.config.cjs`, `index.css`
+- Calidad: `.eslintrc.cjs`, `.prettierrc`, `utils/scoring.test.ts`
+
 # Changelog
 
 ## v0.1.0
