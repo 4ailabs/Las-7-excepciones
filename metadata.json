@@ -1,0 +1,5 @@
+{
+  "name": "Test Maestro de Identificación de Excepciones",
+  "description": "Una aplicación web interactiva para administrar el Test Maestro de Identificación de Excepciones, un sistema diagnóstico algorítmico integral para evaluar síntomas y sus dinámicas subyacentes.",
+  "requestFramePermissions": []
+}
